@@ -224,20 +224,36 @@ void Buffer::forceSaveSerial() {
 
   if(useA){
     if(bufSizeB > 0){
+    #ifdef GENERIC_ESP32
+      Serial2.write(bufB, bufSizeB);
+    #else
       Serial1.write(bufB, bufSizeB);
+    #endif
       bufSizeB = 0;
     }
     if(bufSizeA > 0){
-      Serial1.write(bufA, bufSizeA);
+    #ifdef GENERIC_ESP32
+      Serial2.write(bufA, bufSizeA);
+    #else
+      Serial2.write(bufA, bufSizeA);
+    #endif
       bufSizeA = 0;
     }
   } else {
     if(bufSizeA > 0){
+    #ifdef GENERIC_ESP32
+      Serial2.write(bufA, bufSizeA);
+    #else
       Serial1.write(bufA, bufSizeA);
+    #endif
       bufSizeA = 0;
     }
     if(bufSizeB > 0){
+    #ifdef GENERIC_ESP32
+      Serial2.write(bufB, bufSizeB);
+    #else
       Serial1.write(bufB, bufSizeB);
+    #endif
       bufSizeB = 0;
     }
   }

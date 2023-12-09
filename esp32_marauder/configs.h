@@ -6,16 +6,16 @@
 
   //Indicates that it must redirect the stream with the captured packets to serial (1)
   //If not defined, will write packages to SD card if supported
-  //#define WRITE_PACKETS_SERIAL
+  #define WRITE_PACKETS_SERIAL
   
   //// BOARD TARGETS
   //#define MARAUDER_M5STICKC
   //#define MARAUDER_MINI
   //#define MARAUDER_V4
-  #define MARAUDER_V6
+  //#define MARAUDER_V6
   //#define MARAUDER_V6_1
   //#define MARAUDER_KIT
-  //#define GENERIC_ESP32
+  #define GENERIC_ESP32
   //#define MARAUDER_FLIPPER
   //#define ESP32_LDDB
   //#define MARAUDER_DEV_BOARD_PRO
@@ -128,7 +128,7 @@
     //#define HAS_BATTERY
     #define HAS_BT
     //#define HAS_BUTTONS
-    //#define HAS_NEOPIXEL_LED
+    #define HAS_NEOPIXEL_LED
     //#define HAS_PWR_MGMT
     //#define HAS_SCREEN
     //#define HAS_SD
@@ -665,6 +665,10 @@
   //// END MENU DEFINITIONS
 
   //// SD DEFINITIONS
+  #ifdef GENERIC_ESP32
+    #define SD_CS 5
+  #endif
+
   #ifdef FLIPPER_ZERO_HAT
 
     #ifdef USE_FLIPPER_SD
